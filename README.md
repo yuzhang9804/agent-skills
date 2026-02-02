@@ -6,9 +6,7 @@ Skills follow the [Agent Skills](https://agentskills.io/) format.
 
 ## Available Skills
 
-| Skill | Description |
-|-------|-------------|
-| [code-review](./skills/code-review/) | Review code changes with multi-dimension analysis, severity-based findings, and test suggestions |
+- **[code-review](./skills/code-review/)** - Review code changes with multi-dimension analysis, severity-based findings, and test suggestions
 
 ## Installation
 
