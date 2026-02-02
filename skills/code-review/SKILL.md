@@ -1,6 +1,7 @@
-| name | description | license | metadata |
-| --- | --- | --- | --- |
-| code-review | Review code changes by comparing current branch against a target branch (default master/main). Use when user asks to review code, check PR, review changes, or find issues in their code changes. Provides change summary, logic analysis, issue detection with severity levels, and test case suggestions. | MIT | |
+---
+name: code-review
+description: Review code changes by comparing current branch against a target branch (default master/main). Use when user asks to review code, check PR, review changes, or find issues in their code changes. Provides change summary, logic analysis, issue detection with severity levels, and test case suggestions.
+---
 
 # Code Review
 
