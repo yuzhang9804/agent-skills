@@ -7,6 +7,7 @@ Skills follow the [Agent Skills](https://agentskills.io/) format.
 ## Available Skills
 
 - **[code-review](./skills/code-review/)** - Review code changes with multi-dimension analysis, severity-based findings, and test suggestions
+- **[react-best-practices](./skills/react-best-practices/)** - Opinionated React/React Native business-code ruleset; provides `usePersistFn` and `useDerivedValue` plus rules for effects, component file structure, and store organization
 
 ## Installation
 

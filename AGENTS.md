@@ -5,6 +5,7 @@ This repository contains skills for AI coding agents. Each skill in the `skills/
 ## Available Skills
 
 - **code-review** - Review code changes with multi-dimension analysis and test suggestions
+- **react-best-practices** - Opinionated React/React Native business-code ruleset (usePersistFn, useDerivedValue, effect/component/store conventions)
 
 ## How to Use
 
