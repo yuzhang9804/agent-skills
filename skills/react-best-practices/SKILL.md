@@ -127,3 +127,16 @@ All types related to a store (domain models, payloads, state shapes, etc.) must 
 - Organizing stores by technical dimension (e.g., `uiStore`, `dataStore`).
 - Defining business types outside of a `namespace` container.
 - Creating a store directory without a dedicated `types.ts` file.
+
+### Rule 6 — Actively clean up meaningless variables and dead code when modifying files
+
+When modifying an existing file, you must actively identify and delete meaningless remnants rather than leaving them untouched. This is a behavioral rule for file modifications, ensuring the codebase continuously improves.
+
+You must delete the following three categories of remnants:
+1. **Dead code:** Variables, imports, functions, or type declarations that are completely unreferenced anywhere in the file.
+2. **Meaningless bindings:** Variables that receive a return value but are never read (e.g., `const _temp = sideEffect()`). These must be changed to pure calls without assignment (e.g., `sideEffect()`).
+3. **Commented-out code:** Blocks of old code that have been commented out, or `// TODO` / `// FIXME` comments that are no longer relevant after your changes. Version control (git) is the correct place for history; commented-out code is noise.
+
+This rule applies strictly to "remnants" and "dead code". It does NOT apply to:
+- Incomplete placeholder implementations (e.g., an empty handler waiting to be wired up), which should be completed rather than deleted.
+- Intermediate variables governed by Rule 4 (which must be pushed down into a `useDerivedValue` scope, not deleted).
