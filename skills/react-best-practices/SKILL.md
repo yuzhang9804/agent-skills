@@ -1,6 +1,6 @@
 ---
 name: react-best-practices
-description: A team-internal React best-practices ruleset for business code. Use when writing or reviewing React/React Native components, especially for decisions around useCallback/useMemo/useEffect, derived values, callback identity, component file structure, and type organization. Provides ready-to-copy `usePersistFn` and `useDerivedValue` hooks plus a set of opinionated rules to reduce cognitive load and stale-closure bugs.
+description: A team-internal React best-practices ruleset for business code. MUST trigger when (1) designing or modifying React/React Native components (creating, refactoring, restructuring, or editing component files, props, hooks, or file organization), or (2) creating or modifying complex business logic in a React/React Native project (stores, cross-component state, async flows, side-effect orchestration). Provides ready-to-copy `usePersistFn` and `useDerivedValue` hooks plus five rules covering useCallback/useEffect/useMemo replacements, component file structure, top-level scope hygiene, and store/type organization. Do NOT trigger for read-only code explanation, trivial style/typo/bug fixes, or non-React tasks.
 ---
 
 # React Best Practices (Team Ruleset)
