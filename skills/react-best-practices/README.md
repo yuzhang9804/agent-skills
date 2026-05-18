@@ -23,6 +23,7 @@ Two zero-dependency hooks that must be installed into the target project before 
 4. **Top-level scope must only contain directly consumed identifiers** — any intermediate variable that exists solely to compute another value must be pushed down into a `useDerivedValue` (or IIFE / extracted pure function) scope.
 5. **Organize stores by business domain with dedicated type namespaces** — every store has its own directory containing at minimum the store implementation and a `types.ts` file with all types grouped under a `xxxStoreType` TypeScript namespace.
 6. **Actively clean up meaningless variables and dead code when modifying files** — delete unreferenced variables, meaningless bindings, and commented-out code blocks instead of leaving them untouched.
+7. **Anti-over-encapsulation: Do not declare variables just to mechanically follow rules** — inline single-line forwarding callbacks and simple `className` concatenations directly in JSX. Reserve `usePersistFn` and `useDerivedValue` for cases where they provide genuine architectural value.
 
 ## Layout
 

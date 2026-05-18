@@ -140,3 +140,42 @@ You must delete the following three categories of remnants:
 This rule applies strictly to "remnants" and "dead code". It does NOT apply to:
 - Incomplete placeholder implementations (e.g., an empty handler waiting to be wired up), which should be completed rather than deleted.
 - Intermediate variables governed by Rule 4 (which must be pushed down into a `useDerivedValue` scope, not deleted).
+
+### Rule 7 — Anti-over-encapsulation: Do not declare variables just to mechanically follow rules
+
+This ruleset is not meant to be applied blindly. Every variable declaration must have a genuine reason to exist—such as being referenced in multiple places, being held by an effect/subscription, significantly improving semantics through naming, or containing actual control flow branches. Declaring variables merely to make the code "look neat" or to mechanically satisfy rules is an anti-pattern.
+
+1. **Single-line forwarding callbacks:** Callbacks that simply forward arguments to another function must be inlined directly in the JSX prop. Do NOT wrap them in `usePersistFn` or assign them to a named variable. `usePersistFn` is reserved for callbacks held by effects/subscriptions, reused across multiple places, or containing multi-line logic that benefits from naming.
+2. **`className` concatenation:** Expressions like `cn(...)` or `clsx(...)` must be inlined directly in the JSX `className` prop. Do NOT wrap them in `useDerivedValue`. The only exception is when the class name computation involves actual control flow branches (e.g., multiple `if/else` statements or early returns) that cannot be cleanly expressed in a single inline expression.
+3. **Derived expressions:** Simple derived expressions (e.g., math operations, string concatenations, boolean checks) should be inlined in JSX whenever possible. `useDerivedValue` is reserved for derived values that require intermediate variables (to contain their scope), involve actual control flow, or are consumed in multiple places.
+
+**Example:**
+
+```tsx
+// ❌ BAD: Over-encapsulation. Wrapping single-line callbacks and simple class names just to follow rules.
+const handleChange = usePersistFn((event: ChangeEvent<HTMLInputElement>) => {
+  onChange(normalizeAgentEmailInputValue(event.target.value))
+})
+const handleOpenDialog = usePersistFn(() => {
+  openEditEmailNamespaceDialog()
+})
+const wrapperClassName = useDerivedValue(() => {
+  return cn('flex h-[36px] w-full', hasError && 'ring-inset ring-[1px]')
+})
+
+return (
+  <div className={wrapperClassName}>
+    <input onChange={handleChange} />
+    <button onClick={handleOpenDialog} />
+  </div>
+)
+
+// ✅ GOOD: Inline simple expressions and forwarding callbacks.
+// Note the recommended style: use block body `{ ... }` for inline callbacks, and pass function references directly when signatures match.
+return (
+  <div className={cn('flex h-[36px] w-full', hasError && 'ring-inset ring-[1px]')}>
+    <input onChange={(event) => { onChange(normalizeAgentEmailInputValue(event.target.value)) }} />
+    <button onClick={openEditEmailNamespaceDialog} />
+  </div>
+)
+```
