@@ -179,3 +179,15 @@ return (
   </div>
 )
 ```
+
+### Rule 8 — Check shared components before building new ones
+
+Before writing any new UI element, you must first check the project's shared component directory (typically `components/`) to determine whether a suitable component already exists. Review the component's **Props interface** (TypeScript types) and any accompanying **documentation or README** to understand its supported variants, slots, and usage patterns. Only after confirming that no existing shared component satisfies the requirement should you proceed to build a new one from scratch.
+
+This rule prevents duplicate implementations of common UI primitives (Button, Dialog, Input, Select, Toast, etc.) and ensures visual and behavioral consistency across the application.
+
+**Workflow:**
+1. Identify the UI element you need (e.g., a confirmation dialog, a primary button).
+2. Search the `components/` directory for existing implementations.
+3. If found: read its Props interface and documentation, then use it directly.
+4. If not found: develop the component yourself.

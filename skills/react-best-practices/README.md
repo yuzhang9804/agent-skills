@@ -24,6 +24,7 @@ Two zero-dependency hooks that must be installed into the target project before 
 5. **Organize stores by business domain with dedicated type namespaces** — every store has its own directory containing at minimum the store implementation and a `types.ts` file with all types grouped under a `xxxStoreType` TypeScript namespace.
 6. **Actively clean up meaningless variables and dead code when modifying files** — delete unreferenced variables, meaningless bindings, and commented-out code blocks instead of leaving them untouched.
 7. **Anti-over-encapsulation: Do not declare variables just to mechanically follow rules** — inline single-line forwarding callbacks and simple `className` concatenations directly in JSX. Reserve `usePersistFn` and `useDerivedValue` for cases where they provide genuine architectural value.
+8. **Check shared components before building new ones** — before writing any new UI element, first check the project's shared component directory (`components/`) for existing implementations. Review Props interfaces and documentation, then use existing components directly. Only build from scratch if nothing suitable exists.
 
 ## Layout
 
